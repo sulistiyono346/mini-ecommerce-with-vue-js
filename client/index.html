@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="google-signin-client_id" content="[g_id].apps.googleusercontent.com">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/coreui-icons.min.css">
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+
+<body>
+    <div id="app">
+        <navbar v-if="pages=='home'||pages=='detail_item'||pages=='cart_items'||pages=='shipping'" @pages="change_pages($event)"
+            :login_status="login_status" @logout="logout($event)" :cart_item="cart_item"></navbar>
+        <carousel v-if="pages=='home'"></carousel>
+        <home v-if="pages=='home'" @pages="change_pages($event)"></home>
+        <register v-if="pages=='register'" @pages="change_pages($event)"></register>
+        <login v-if="pages=='login'" @is_login="isLogin($event)" @pages="change_pages($event)"></login>
+        <admin v-if="pages=='admin'" @pages="change_pages($event)" @logout="logout($event)"></admin>
+        <detail_item v-if="pages=='detail_item'" :item_id="item_id" :cart_item="cart_item" @pages="change_pages($event)"
+            @get_cart="get_cart($event)"></detail_item>
+        <carts v-if="pages=='cart_items'" @pages="change_pages($event)" :cart_item="cart_item" @get_cart="get_cart($event)"></carts>
+        <shipping v-if="pages=='shipping'" @pages="change_pages($event)" :cart_item="cart_item" @get_cart="get_cart($event)"></shipping>
+
+    </div>
+    <!-- end app -->
+
+    <!-- components -->
+    <script src="./components/navbar.js"> </script>
+    <script src="./components/carousel.js">
+    </script>
+    <script src="./components/register.js"></script>
+    <script src="./components/login.js"></script>
+    <script src="./components/home.js"></script>
+    <script src="./components/admin.js"></script>
+    <script src="./components/item.js"></script>
+    <script src="./components/category.js"></script>
+    <script src="./components/detail_item.js"></script>
+    <script src="./components/carts.js"></script>
+    <script src="./components/shipping.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover({
+                html: true,
+                content: function () {
+                    return $('#popover-content').html();
+                }
+            });
+        });
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+
+    <script src="./script/script.js"></script>
+</body>
+
+</html>

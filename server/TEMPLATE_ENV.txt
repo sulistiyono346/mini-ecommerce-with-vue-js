@@ -1,0 +1,5 @@
+ENV_TOKEN=[your_token]
+CLOUD_BUCKET=[your_cloud_bucket]
+GCLOUD_PROJECT=[your_google_cloud_project]
+KEYFILE_PATH=[your_keyfile.json]
+KEY_ID=[your_key_id]
